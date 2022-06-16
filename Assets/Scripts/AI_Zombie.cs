@@ -32,9 +32,8 @@ public class AI_Zombie : MonoBehaviour
     }
 
     public void Comportamiento_Enemigo(){
-        if(Vector3.Distance(transform.position, target.transform.position) > 5) //if the player is out of sight of the enemy
+        if(Vector3.Distance(transform.position, target.transform.position) > 3) //if the player is out of sight of the enemy
         {
-            Debug.Log("desactivado");
             ani.SetBool("run", false);
             cronometro += 1*Time.deltaTime;
             if(cronometro >= 4){
@@ -69,7 +68,7 @@ public class AI_Zombie : MonoBehaviour
                 transform.Translate(Vector3.forward*2*Time.deltaTime);
 
                 ani.SetBool("attack", false);
-            }else{
+            }else{ //attack
                 ani.SetBool("walk", false);
                 ani.SetBool("run", false);
 
