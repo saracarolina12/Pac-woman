@@ -7,6 +7,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject redPanel;
+    public TextMeshProUGUI gameoverText;
+    [SerializeField] private AudioSource ouch;
+    [SerializeField] private AudioSource wakawaka;
+    [SerializeField] private AudioSource winGame;
+    [SerializeField] private AudioSource gameOver;
     public Image[] lifesLeft;
     public TextMeshProUGUI scoreLabel;
     private Rigidbody rb;
@@ -17,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public int count = 0; // variable para contar los cubitos
     // public GameObject winTextObject;
     public int damage=0;
+    private float targetTime = 2.0f;
 
     // aniadir una cadena fija y la variable de la cuenta de los cubos
     void SetCountText()
@@ -33,7 +40,8 @@ public class PlayerController : MonoBehaviour
         // SetCountText();
     }
     void Update(){
-        Debug.Log(transform.position.x);
+        targetTime -= Time.deltaTime;
+        Debug.Log(targetTime);
         if(transform.position.z < -14.8)  transform.position = new Vector3(6.83f, 0.46f, 7.95f);
         if(transform.position.z > 7.99) transform.position = new Vector3(2.26f,0.56f, -14.74f);
     }
@@ -54,20 +62,47 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Enemy")){ 
-            Debug.Log(damage);
-            if(damage < 2){
-                damage++;
-                SetDamage(damage);
-            }else{
-                Debug.Log("Game over");
-                //audio game over displays
+            if (targetTime <= 0.0f)
+            {
+                targetTime = 2.0f;
+                //Debug.Log(damage);
+                if(damage <= 2){
+                    if(!ouch.isPlaying){
+                        ouch.Play();
+                    }
+                    damage++;
+                    SetDamage(damage);
+                }else{
+                     //Red Screen
+                    var color = redPanel.GetComponent<Image>().color;
+                    color.a = 0.8f ;
+                    redPanel.GetComponent<Image>().color = color;
+                    //Show Game Over Text
+                    gameoverText.color = new Color32(236, 207, 97, 255);
+                    ouch.Stop();
+                    wakawaka.Stop();
+                    if(!gameOver.isPlaying){
+                        gameOver.Play();
+                    }
+                    Debug.Log("Game over");
+                    //audio game over displays
+                }
             }
         }
         else if(other.CompareTag("Collectible")){
             other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.
+            if (!wakawaka.isPlaying)
+            {
+                wakawaka.Play();
+            }
             count++;
             SetCountText();
             if (count >= cubitos) {
+                ouch.Stop();
+                wakawaka.Stop();
+                if(!winGame.isPlaying){
+                    winGame.Play();
+                }
                 // winTextObject.SetActive(true);
             }
         }
