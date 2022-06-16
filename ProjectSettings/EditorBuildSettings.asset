@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: 2c0a7b76145ff01469059568cfef057c
+  - enabled: 1
+    path: Assets/Scenes/Main-pacwoman.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Call-of-duty.unity
+    guid: c1b7964dfe647f648a885a4c6b6a8c8d
   m_configObjects: {}

@@ -57,7 +57,6 @@ public class AI_Zombie : MonoBehaviour
                     break;
             }
         }else{ //enemy follows the player
-
             if(Vector3.Distance(transform.position, target.transform.position) > 1 && !atacando){
                 var lookPos = target.transform.position - transform.position;
                 lookPos.y = 0;
@@ -69,11 +68,13 @@ public class AI_Zombie : MonoBehaviour
 
                 ani.SetBool("attack", false);
             }else{ //attack
+                Debug.Log("attack");
                 ani.SetBool("walk", false);
                 ani.SetBool("run", false);
 
                 ani.SetBool("attack", true);
                 atacando = true;
+                //Final_Ani();
             }
         }
     }
