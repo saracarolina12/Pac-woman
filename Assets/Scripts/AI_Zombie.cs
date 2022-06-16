@@ -12,6 +12,7 @@ public class AI_Zombie : MonoBehaviour
     private Vector3 playerCurrPos;
 
     public GameObject target;
+    public bool atacando;
 
     void Start()
     {
@@ -23,6 +24,11 @@ public class AI_Zombie : MonoBehaviour
     void Update()
     {
         Comportamiento_Enemigo();
+    }
+
+    public void Final_Ani(){
+        ani.SetBool("attack", false);
+        atacando = false;
     }
 
     public void Comportamiento_Enemigo(){
@@ -52,13 +58,24 @@ public class AI_Zombie : MonoBehaviour
                     break;
             }
         }else{ //enemy follows the player
-            var lookPos = target.transform.position - transform.position;
-            lookPos.y = 0;
-            var rotation = Quaternion.LookRotation(lookPos);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
-            ani.SetBool("walk", false);
-            ani.SetBool("run", true);
-            transform.Translate(Vector3.forward*2*Time.deltaTime);
+
+            if(Vector3.Distance(transform.position, target.transform.position) > 1 && !atacando){
+                var lookPos = target.transform.position - transform.position;
+                lookPos.y = 0;
+                var rotation = Quaternion.LookRotation(lookPos);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
+                ani.SetBool("walk", false);
+                ani.SetBool("run", true);
+                transform.Translate(Vector3.forward*2*Time.deltaTime);
+
+                ani.SetBool("attack", false);
+            }else{
+                ani.SetBool("walk", false);
+                ani.SetBool("run", false);
+
+                ani.SetBool("attack", true);
+                atacando = true;
+            }
         }
     }
 }

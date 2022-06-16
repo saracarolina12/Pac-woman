@@ -45,12 +45,17 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         print("ontriggerEnter!");
-        other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.
-        count++;
-        // SetCountText();
+        if(other.CompareTag("Enemy")){
+            Debug.Log("daño");
+        }
+        else if(other.CompareTag("Collectible")){
+            other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.
+            count++;
+            // SetCountText();
 
-        if (count >= cubitos) {
-            // winTextObject.SetActive(true);
+            if (count >= cubitos) {
+                // winTextObject.SetActive(true);
+            }
         }
     }
 }
