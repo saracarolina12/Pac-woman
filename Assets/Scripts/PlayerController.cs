@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    private int cubitos = 12;
+    private int cubitos = 380;
     public float speed = 0; // todo lo que declaremos como public lo podremos modificar en Unity
     public int count = 0; // variable para contar los cubitos
     // public GameObject winTextObject;
@@ -79,8 +79,8 @@ public class PlayerController : MonoBehaviour
                     redPanel.GetComponent<Image>().color = color;
                     //Show Game Over Text
                     gameoverText.color = new Color32(236, 207, 97, 255);
-                    ouch.Stop();
-                    wakawaka.Stop();
+                    ouch.mute = true;
+                    wakawaka.mute = true;
                     if(!gameOver.isPlaying){
                         gameOver.Play();
                     }
