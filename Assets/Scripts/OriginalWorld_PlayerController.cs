@@ -19,8 +19,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     [SerializeField] private AudioSource gameOver;
     [SerializeField] private AudioSource turnBlue;
     public Image[] lifesLeft;
-    public TextMeshProUGUI scoreLabel;
-    public TextMeshProUGUI gameoverText;
+    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
@@ -146,12 +145,19 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                         damage++;
                         SetDamage(damage);
                     }else{
+                        if(!ouch.isPlaying){
+                            ouch.Play();
+                        }
+                        SetDamage(3);
                         //Red Screen
                         var color = redPanel.GetComponent<Image>().color;
                         color.a = 0.8f ;
                         redPanel.GetComponent<Image>().color = color;
                         //Show Game Over Text
                         gameoverText.color = new Color32(236, 207, 97, 255);
+                         //SHOW BUTTONS GAME OVER
+                        tryAgainText.color = new Color32(221,218,205,255);
+                        menuText.color = new Color32(221,218,205,255);
                         ouch.Stop();
                         wakawaka.Stop();
                         if(countGO == 1 && !gameOver.isPlaying){

@@ -8,13 +8,14 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public GameObject redPanel;
-    public TextMeshProUGUI gameoverText;
     [SerializeField] private AudioSource ouch;
     [SerializeField] private AudioSource wakawaka;
     [SerializeField] private AudioSource winGame;
     [SerializeField] private AudioSource gameOver;
+    public Transform MYPLAYER;
+    public Transform CAMERA;
     public Image[] lifesLeft;
-    public TextMeshProUGUI scoreLabel;
+    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
@@ -51,6 +52,26 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        if (movementX > 0) {
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 90, 0); //derecha
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementX < 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, -90, 0);//izquierda
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementY > 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 0, 0);//arriba
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementY < 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 180, 0); //abajo
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
     }
 
     void FixedUpdate()
@@ -66,21 +87,29 @@ public class PlayerController : MonoBehaviour
             {
                 targetTime = 2.0f;
                 //Debug.Log(damage);
-                if(damage <= 2){
+                if(damage < 2){
                     if(!ouch.isPlaying){
                         ouch.Play();
                     }
                     damage++;
                     SetDamage(damage);
                 }else{
+                    if(!ouch.isPlaying){
+                        ouch.Play();
+                    }
+                    SetDamage(3);
                      //Red Screen
                     var color = redPanel.GetComponent<Image>().color;
                     color.a = 0.8f ;
                     redPanel.GetComponent<Image>().color = color;
                     //Show Game Over Text
                     gameoverText.color = new Color32(236, 207, 97, 255);
-                    ouch.Stop();
+                     //SHOW BUTTONS GAME OVER
+                    tryAgainText.color = new Color32(221,218,205,255);
+                    menuText.color = new Color32(221,218,205,255);
+                    // ouch.Stop();
                     wakawaka.Stop();
+                    winGame.Stop();
                     if(!gameOver.isPlaying){
                         gameOver.Play();
                     }
