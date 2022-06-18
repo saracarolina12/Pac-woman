@@ -9,6 +9,8 @@ public class OriginalWorld_PlayerController : MonoBehaviour
 {
     public GameObject redPanel;
     public GameObject MYGHOST;
+    public Transform MYPLAYER;
+    public Transform CAMERA;
     public Material blueGhost;
     public Material whiteGhost;
     [SerializeField] private AudioSource ouch;
@@ -62,6 +64,26 @@ public class OriginalWorld_PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        if (movementX > 0) {
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 90, 0); //derecha
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementX < 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, -90, 0);//izquierda
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementY > 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 0, 0);//arriba
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementY < 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 180, 0); //abajo
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
     }
 
     void FixedUpdate()
@@ -116,7 +138,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                 if (targetTime <= 0.0f)
                 {
                     targetTime = 2.0f;
-                    Debug.Log(damage);
+                    // Debug.Log(damage);
                     if(damage < 2){
                         if(!ouch.isPlaying){
                             ouch.Play();

@@ -4004,6 +4004,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361aec556615846fabc99162c00de926, type: 3}
+--- !u!4 &598708086 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5751716763435092499, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
+  m_PrefabInstance: {fileID: 5751716763286660967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &604753969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
@@ -5406,6 +5411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redPanel: {fileID: 1426326495}
   MYGHOST: {fileID: 575497062}
+  MYPLAYER: {fileID: 764988693}
+  CAMERA: {fileID: 598708086}
   blueGhost: {fileID: 2100000, guid: 13aa189cace42eb48a42bfbacd94e208, type: 2}
   whiteGhost: {fileID: 2100000, guid: fc492a24ce5bf08428d17b771e346623, type: 2}
   ouch: {fileID: 764988673}
@@ -15091,6 +15098,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5751716763435092499, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7996847
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751716763435092499, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.6004202
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751716763435092499, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751716763435092499, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5751716763435092499, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5751716764492916728, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
       propertyPath: ouch
       value: 

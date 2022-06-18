@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update(){
         targetTime -= Time.deltaTime;
-        Debug.Log(targetTime);
+        // Debug.Log(targetTime);
         if(transform.position.z < -14.8)  transform.position = new Vector3(6.83f, 0.46f, 7.95f);
         if(transform.position.z > 7.99) transform.position = new Vector3(2.26f,0.56f, -14.74f);
     }
