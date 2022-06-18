@@ -64,7 +64,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
             if (targetTime <= 0.0f)
             {
                 targetTime = 2.0f;
-                Debug.Log(damage);
+                // Debug.Log(damage);
                 if(damage < 2){
                     if(!ouch.isPlaying){
                         ouch.Play();
@@ -83,7 +83,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                     if(!gameOver.isPlaying){
                         gameOver.Play();
                     }
-                    Debug.Log("Game over");
+                    // Debug.Log("Game over");
                     //audio game over displays
                 }
             }

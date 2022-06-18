@@ -31,6 +31,17 @@ public class AI_Zombie : MonoBehaviour
         atacando = false;
     }
 
+    bool IsPlayerVisible() {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        {
+            // Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+            // Debug.Log("Did Hit" + hit.transform.gameObject.tag);
+            return (hit.transform.gameObject.tag == "Player");
+        }
+        return false;
+    }
+
     public void Comportamiento_Enemigo(){
         if(Vector3.Distance(transform.position, target.transform.position) > 3) //if the player is out of sight of the enemy
         {
@@ -68,13 +79,15 @@ public class AI_Zombie : MonoBehaviour
 
                 ani.SetBool("attack", false);
             }else{ //attack
-                Debug.Log("attack");
-                ani.SetBool("walk", false);
-                ani.SetBool("run", false);
+                if (IsPlayerVisible()) {
+                    Debug.Log("attack");
+                    ani.SetBool("walk", false);
+                    ani.SetBool("run", false);
 
-                ani.SetBool("attack", true);
-                atacando = true;
-                //Final_Ani();
+                    ani.SetBool("attack", true);
+                    atacando = true;
+                    //Final_Ani();
+                }
             }
         }
     }
