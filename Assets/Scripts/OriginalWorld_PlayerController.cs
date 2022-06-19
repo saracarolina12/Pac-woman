@@ -56,6 +56,8 @@ public class OriginalWorld_PlayerController : MonoBehaviour
         targetTime -= Time.deltaTime;
         if(transform.position.x < -11.59)  transform.position = new Vector3(11.37f, 0.63f, 1.87f);
         if(transform.position.x > 11.39) transform.position = new Vector3(-11.57f,0.63f, 1.81f);
+        if(thisGhost.transform.position.x < -11.59)  thisGhost.transform.position = new Vector3(11.37f, 0.63f, 1.87f);
+        if(thisGhost.transform.position.x > 11.59)  thisGhost.transform.position = new Vector3(-11.57f,0.63f, 1.81f);
     }
 
     void OnMove(InputValue movementValue) // trae la infromacion que hace el usuario con teclas o joystick

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource wakawaka;
     [SerializeField] private AudioSource winGame;
     [SerializeField] private AudioSource gameOver;
+    public GameObject[] thisZombie;
+    public GameObject selector; //selected in the editor
     public Transform MYPLAYER;
     public Transform CAMERA;
     public Image[] lifesLeft;
@@ -38,13 +40,16 @@ public class PlayerController : MonoBehaviour
     {
         // winTextObject.SetActive(false); // desactivar cuando entre
         rb = GetComponent<Rigidbody>();
-        // SetCountText();
     }
     void Update(){
         targetTime -= Time.deltaTime;
         // Debug.Log(targetTime);
         if(transform.position.z < -14.8)  transform.position = new Vector3(6.83f, 0.46f, 7.95f);
         if(transform.position.z > 7.99) transform.position = new Vector3(2.26f,0.56f, -14.74f);
+        for (int i = 0; i < 6; i++){
+            if(thisZombie[i].transform.position.z < -14.8)  thisZombie[i].transform.position = new Vector3(6.83f, 0.46f, 7.95f);
+            if(thisZombie[i].transform.position.z > 7.99)  thisZombie[i].transform.position = new Vector3(2.26f,0.56f, -14.74f);
+        }
     }
 
     void OnMove(InputValue movementValue) // trae la infromacion que hace el usuario con teclas o joystick

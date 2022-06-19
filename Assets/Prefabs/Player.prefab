@@ -212,5 +212,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73cedfcbc2ba4eab9278df2ed6e2145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redPanel: {fileID: 0}
+  ouch: {fileID: 0}
+  wakawaka: {fileID: 0}
+  winGame: {fileID: 0}
+  gameOver: {fileID: 0}
+  thisZombie: []
+  selector: {fileID: 0}
+  MYPLAYER: {fileID: 0}
+  CAMERA: {fileID: 0}
+  lifesLeft: []
+  scoreLabel: {fileID: 0}
+  gameoverText: {fileID: 0}
+  tryAgainText: {fileID: 0}
+  menuText: {fileID: 0}
   speed: 0
   count: 0
+  damage: 0
