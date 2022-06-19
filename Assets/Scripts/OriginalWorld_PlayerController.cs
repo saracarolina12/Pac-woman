@@ -9,6 +9,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
 {
     public GameObject redPanel;
     public GameObject MYGHOST;
+    public GameObject thisGhost;
     public Transform MYPLAYER;
     public Transform CAMERA;
     public Material blueGhost;
@@ -94,6 +95,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if(isBlue){
+            Debug.Log("true");
             if(blueTime <= 0.0f){
                 blueTime = 4.0f;
                 MYGHOST.GetComponent<Renderer>().material = whiteGhost;
@@ -107,8 +109,8 @@ public class OriginalWorld_PlayerController : MonoBehaviour
 
             //collide
             if(other.CompareTag("Enemy")){ 
-                //catch ghost and appear it in the 'cage'
-                Debug.Log("enemy");
+                Debug.Log("enemyyyy");
+                thisGhost.transform.position =  new Vector3(0.11f, 0.03f, 1.7f);
             }
             else if(other.CompareTag("Collectible")){
                 other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.

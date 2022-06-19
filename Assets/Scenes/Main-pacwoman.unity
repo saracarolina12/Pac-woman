@@ -5690,6 +5690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redPanel: {fileID: 1426326495}
   MYGHOST: {fileID: 575497062}
+  thisGhost: {fileID: 1664788163}
   MYPLAYER: {fileID: 764988693}
   CAMERA: {fileID: 598708086}
   blueGhost: {fileID: 2100000, guid: 13aa189cace42eb48a42bfbacd94e208, type: 2}
@@ -11751,7 +11752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66355f4ad20cd3a47bb09d33943667be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.912026
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66355f4ad20cd3a47bb09d33943667be, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11759,7 +11760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66355f4ad20cd3a47bb09d33943667be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.192179
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 66355f4ad20cd3a47bb09d33943667be, type: 3}
       propertyPath: m_LocalRotation.w
