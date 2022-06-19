@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Collectible
   - Enemy
+  - Big-dot
+  - ghost
   layers:
   - Default
   - TransparentFX

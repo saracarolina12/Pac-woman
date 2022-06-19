@@ -12,4 +12,8 @@ public class GO_SceneManagementCode : MonoBehaviour
     public void TryAgain(){
         SceneManager.LoadScene("Main-pacwoman");
     }
+
+    public void TryAgain_COD(){
+        SceneManager.LoadScene("Call-of-duty");
+    }
 }

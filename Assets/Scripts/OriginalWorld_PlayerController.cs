@@ -7,14 +7,20 @@ using UnityEngine.UI;
 
 public class OriginalWorld_PlayerController : MonoBehaviour
 {
-    public GameObject redPanel;
+    public GameObject redPanel, greenPanel;
+    public GameObject MYGHOST;
+    public GameObject thisGhost;
+    public Transform MYPLAYER;
+    public Transform CAMERA;
+    public Material blueGhost;
+    public Material whiteGhost;
     [SerializeField] private AudioSource ouch;
     [SerializeField] private AudioSource wakawaka;
     [SerializeField] private AudioSource winGame;
     [SerializeField] private AudioSource gameOver;
+    [SerializeField] private AudioSource turnBlue;
     public Image[] lifesLeft;
-    public TextMeshProUGUI scoreLabel;
-    public TextMeshProUGUI gameoverText;
+    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText, playAgainText, wingameText;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
@@ -24,6 +30,10 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     // public GameObject winTextObject;
     public int damage=0;
     private float targetTime = 2.0f;
+    private float blueTime = 4.0f;
+    public bool isBlue = false;
+    private bool countTime = false;
+    private int countGO = 1;
 
     // aniadir una cadena fija y la variable de la cuenta de los cubos
     void SetCountText()
@@ -40,9 +50,14 @@ public class OriginalWorld_PlayerController : MonoBehaviour
         // SetCountText();
     }
     void Update(){
+        if(countTime == true) {
+            blueTime -= Time.deltaTime;
+        }
         targetTime -= Time.deltaTime;
         if(transform.position.x < -11.59)  transform.position = new Vector3(11.37f, 0.63f, 1.87f);
         if(transform.position.x > 11.39) transform.position = new Vector3(-11.57f,0.63f, 1.81f);
+        if(thisGhost.transform.position.x < -11.59)  thisGhost.transform.position = new Vector3(11.37f, 0.63f, 1.87f);
+        if(thisGhost.transform.position.x > 11.59)  thisGhost.transform.position = new Vector3(-11.57f,0.63f, 1.81f);
     }
 
     void OnMove(InputValue movementValue) // trae la infromacion que hace el usuario con teclas o joystick
@@ -50,6 +65,26 @@ public class OriginalWorld_PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        if (movementX > 0) {
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 90, 0); //derecha
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementX < 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, -90, 0);//izquierda
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementY > 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 0, 0);//arriba
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
+        if (movementY < 0){
+            CAMERA.parent = null;
+            MYPLAYER.transform.rotation = Quaternion.Euler (0.0f, 180, 0); //abajo
+            CAMERA.transform.SetParent(MYPLAYER.transform, true);
+        }
     }
 
     void FixedUpdate()
@@ -60,49 +95,150 @@ public class OriginalWorld_PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy")){ 
-            if (targetTime <= 0.0f)
-            {
-                targetTime = 2.0f;
-                // Debug.Log(damage);
-                if(damage < 2){
-                    if(!ouch.isPlaying){
-                        ouch.Play();
-                    }
-                    damage++;
-                    SetDamage(damage);
-                }else{
-                    //Red Screen
-                    var color = redPanel.GetComponent<Image>().color;
-                    color.a = 0.8f ;
-                    redPanel.GetComponent<Image>().color = color;
-                    //Show Game Over Text
-                    gameoverText.color = new Color32(236, 207, 97, 255);
+        if(isBlue){
+            Debug.Log("true");
+            if(blueTime <= 0.0f){
+                blueTime = 4.0f;
+                MYGHOST.GetComponent<Renderer>().material = whiteGhost;
+                isBlue = false;
+                countTime = false;
+            }else{
+                countTime = true;
+                MYGHOST.GetComponent<Renderer>().material = blueGhost;
+            }
+            
+
+            //collide
+            if(other.CompareTag("Enemy")){ 
+                thisGhost.transform.position =  new Vector3(0.11f, 0.03f, 1.7f);
+            }
+            else if(other.CompareTag("Collectible")){
+                other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.
+                if (!wakawaka.isPlaying)
+                {
+                    wakawaka.Play();
+                }
+                count++;
+                SetCountText();
+                if (count >= cubitos) {
                     ouch.Stop();
                     wakawaka.Stop();
-                    if(!gameOver.isPlaying){
-                        gameOver.Play();
+                    if(!winGame.isPlaying){
+                        winGame.Play();
                     }
-                    // Debug.Log("Game over");
-                    //audio game over displays
+                    // winTextObject.SetActive(true);
+                     //show win text
+                    var color = greenPanel.GetComponent<Image>().color;
+                    color.a = 0.2f ;
+                    greenPanel.GetComponent<Image>().color = color;
+
+                    wingameText.color = new Color32(223, 255, 22, 255);
+                    menuText.color = new Color32(221,218,205,255);
+                    playAgainText.color = new Color32(221,218,205,255);
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
                 }
             }
-        }
-        else if(other.CompareTag("Collectible")){
-            other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.
-            if (!wakawaka.isPlaying)
-            {
-                wakawaka.Play();
-            }
-            count++;
-            SetCountText();
-            if (count >= cubitos) {
-                ouch.Stop();
-                wakawaka.Stop();
-                if(!winGame.isPlaying){
-                    winGame.Play();
+
+
+            
+        }else{
+            Debug.Log("false");
+            // GetComponent<Renderer>().material = whiteGhost;
+            if(other.CompareTag("Enemy")){ 
+                if (targetTime <= 0.0f)
+                {
+                    targetTime = 2.0f;
+                    // Debug.Log(damage);
+                    if(damage < 2){
+                        if(!ouch.isPlaying){
+                            ouch.Play();
+                        }
+                        damage++;
+                        SetDamage(damage);
+                    }else{
+                        if(!ouch.isPlaying){
+                            ouch.Play();
+                        }
+                        SetDamage(3);
+                        //Red Screen
+                        var color = redPanel.GetComponent<Image>().color;
+                        color.a = 0.8f ;
+                        redPanel.GetComponent<Image>().color = color;
+                        //Show Game Over Text
+                        gameoverText.color = new Color32(236, 207, 97, 255);
+                         //SHOW BUTTONS GAME OVER
+                        tryAgainText.color = new Color32(221,218,205,255);
+                        menuText.color = new Color32(221,218,205,255);
+                        ouch.Stop();
+                        wakawaka.Stop();
+                        if(countGO == 1 && !gameOver.isPlaying){
+                            gameOver.Play();
+                            countGO++;
+                        }
+                        rb.constraints = RigidbodyConstraints.FreezeAll;
+                        // rb.constraints += RigidbodyConstraints.FreezeRotation;
+                        Debug.Log("Game over");
+                        //audio game over displays
+                    }
+                    isBlue = false;
                 }
-                // winTextObject.SetActive(true);
+            }
+            else if(other.CompareTag("Collectible")){
+                other.gameObject.SetActive(false); // SetActive dice si va a estar activo o no en el juego. solo se esta ocultando.
+                if (!wakawaka.isPlaying)
+                {
+                    wakawaka.Play();
+                }
+                count++;
+                SetCountText();
+                if (count >= cubitos) {
+                    ouch.Stop();
+                    wakawaka.Stop();
+                    if(!winGame.isPlaying){
+                        winGame.Play();
+                    }
+                    // winTextObject.SetActive(true);
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                     // winTextObject.SetActive(true);
+                     //show win text
+                    var color = greenPanel.GetComponent<Image>().color;
+                    color.a = 0.2f ;
+                    greenPanel.GetComponent<Image>().color = color;
+
+                    wingameText.color = new Color32(223, 255, 22, 255);
+                    menuText.color = new Color32(221,218,205,255);
+                    playAgainText.color = new Color32(221,218,205,255);
+                }
+                isBlue = false;
+            }
+            else if(other.CompareTag("Big-dot")){
+                other.gameObject.SetActive(false); 
+                if (!turnBlue.isPlaying)
+                {
+                    wakawaka.Stop();
+                    turnBlue.Play();
+                }
+                count+=5;
+                SetCountText();
+                if (count >= cubitos) {
+                    ouch.Stop();
+                    wakawaka.Stop();
+                    if(!winGame.isPlaying){
+                        winGame.Play();
+                    }
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                     // winTextObject.SetActive(true);
+                     //show win text
+                    var color = greenPanel.GetComponent<Image>().color;
+                    color.a = 0.2f ;
+                    greenPanel.GetComponent<Image>().color = color;
+
+                    wingameText.color = new Color32(223, 255, 22, 255);
+                    menuText.color = new Color32(221,218,205,255);
+                    playAgainText.color = new Color32(221,218,205,255);
+                    // winTextObject.SetActive(true);
+                }
+                isBlue = true;
             }
         }
     }
