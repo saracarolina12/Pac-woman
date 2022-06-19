@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class OriginalWorld_PlayerController : MonoBehaviour
 {
-    public GameObject redPanel;
+    public GameObject redPanel, greenPanel;
     public GameObject MYGHOST;
     public GameObject thisGhost;
     public Transform MYPLAYER;
@@ -20,7 +20,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     [SerializeField] private AudioSource gameOver;
     [SerializeField] private AudioSource turnBlue;
     public Image[] lifesLeft;
-    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText;
+    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText, playAgainText, wingameText;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
@@ -110,7 +110,6 @@ public class OriginalWorld_PlayerController : MonoBehaviour
 
             //collide
             if(other.CompareTag("Enemy")){ 
-                Debug.Log("enemyyyy");
                 thisGhost.transform.position =  new Vector3(0.11f, 0.03f, 1.7f);
             }
             else if(other.CompareTag("Collectible")){
@@ -128,6 +127,15 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                         winGame.Play();
                     }
                     // winTextObject.SetActive(true);
+                     //show win text
+                    var color = greenPanel.GetComponent<Image>().color;
+                    color.a = 0.2f ;
+                    greenPanel.GetComponent<Image>().color = color;
+
+                    wingameText.color = new Color32(223, 255, 22, 255);
+                    menuText.color = new Color32(221,218,205,255);
+                    playAgainText.color = new Color32(221,218,205,255);
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
                 }
             }
 
@@ -190,6 +198,16 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                         winGame.Play();
                     }
                     // winTextObject.SetActive(true);
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                     // winTextObject.SetActive(true);
+                     //show win text
+                    var color = greenPanel.GetComponent<Image>().color;
+                    color.a = 0.2f ;
+                    greenPanel.GetComponent<Image>().color = color;
+
+                    wingameText.color = new Color32(223, 255, 22, 255);
+                    menuText.color = new Color32(221,218,205,255);
+                    playAgainText.color = new Color32(221,218,205,255);
                 }
                 isBlue = false;
             }
@@ -208,6 +226,16 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                     if(!winGame.isPlaying){
                         winGame.Play();
                     }
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+                     // winTextObject.SetActive(true);
+                     //show win text
+                    var color = greenPanel.GetComponent<Image>().color;
+                    color.a = 0.2f ;
+                    greenPanel.GetComponent<Image>().color = color;
+
+                    wingameText.color = new Color32(223, 255, 22, 255);
+                    menuText.color = new Color32(221,218,205,255);
+                    playAgainText.color = new Color32(221,218,205,255);
                     // winTextObject.SetActive(true);
                 }
                 isBlue = true;

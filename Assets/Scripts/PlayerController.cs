@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject redPanel;
+    public GameObject redPanel, greenPanel;
     [SerializeField] private AudioSource ouch;
     [SerializeField] private AudioSource wakawaka;
     [SerializeField] private AudioSource winGame;
@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour
     public Transform MYPLAYER;
     public Transform CAMERA;
     public Image[] lifesLeft;
-    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText;
+    public TextMeshProUGUI scoreLabel, gameoverText, tryAgainText, menuText, playAgainText, wingameText;
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    private int cubitos = 12;
+    private int cubitos = 380;
     public float speed = 0; // todo lo que declaremos como public lo podremos modificar en Unity
     public int count = 0; // variable para contar los cubitos
     // public GameObject winTextObject;
@@ -138,7 +138,14 @@ public class PlayerController : MonoBehaviour
                 if(!winGame.isPlaying){
                     winGame.Play();
                 }
-                // winTextObject.SetActive(true);
+                //show win text
+                var color = greenPanel.GetComponent<Image>().color;
+                color.a = 0.2f ;
+                greenPanel.GetComponent<Image>().color = color;
+
+                wingameText.color = new Color32(223, 255, 22, 255);
+                menuText.color = new Color32(221,218,205,255);
+                playAgainText.color = new Color32(221,218,205,255);
             }
         }
     }
