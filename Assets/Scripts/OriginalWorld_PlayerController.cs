@@ -35,7 +35,6 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     private bool countTime = false;
     private int countGO = 1;
 
-
     // aniadir una cadena fija y la variable de la cuenta de los cubos
     void SetCountText()
     {
@@ -166,6 +165,8 @@ public class OriginalWorld_PlayerController : MonoBehaviour
                             gameOver.Play();
                             countGO++;
                         }
+                        rb.constraints = RigidbodyConstraints.FreezeAll;
+                        // rb.constraints += RigidbodyConstraints.FreezeRotation;
                         Debug.Log("Game over");
                         //audio game over displays
                     }

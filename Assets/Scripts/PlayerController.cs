@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
                     if(!gameOver.isPlaying){
                         gameOver.Play();
                     }
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
                     Debug.Log("Game over");
                     //audio game over displays
                 }
