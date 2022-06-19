@@ -31,7 +31,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     public int damage=0;
     private float targetTime = 2.0f;
     private float blueTime = 4.0f;
-    private bool isBlue = false;
+    public bool isBlue = false;
     private bool countTime = false;
     private int countGO = 1;
 

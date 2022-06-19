@@ -5711,6 +5711,7 @@ MonoBehaviour:
   speed: 12
   count: 0
   damage: 0
+  isBlue: 0
 --- !u!4 &764988693 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5751716764492916730, guid: 140a08413851f40e3abd60b232f1c0a2, type: 3}
@@ -11881,6 +11882,7 @@ MonoBehaviour:
   ani: {fileID: 0}
   angulo: {x: 0, y: 0, z: 0, w: 0}
   grado: 0
+  player_script: {fileID: 764988688}
   target: {fileID: 764988669}
   atacando: 0
 --- !u!4 &1683121066 stripped
