@@ -24,7 +24,7 @@ public class OriginalWorld_PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float movementX;
     private float movementY;
-    private int cubitos = 12;
+    private int cubitos = 298;
     public float speed = 0; // todo lo que declaremos como public lo podremos modificar en Unity
     public int count = 0; // variable para contar los cubitos
     // public GameObject winTextObject;
