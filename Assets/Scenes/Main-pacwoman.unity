@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4251,6 +4251,18 @@ PrefabInstance:
       value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.58
       objectReference: {fileID: 0}
@@ -4293,6 +4305,10 @@ PrefabInstance:
     - target: {fileID: 892266840687535599, guid: 361aec556615846fabc99162c00de926, type: 3}
       propertyPath: m_Name
       value: Dot (122)
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535599, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_TagString
+      value: Big-dot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361aec556615846fabc99162c00de926, type: 3}
@@ -7329,6 +7345,18 @@ PrefabInstance:
       value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.87
       objectReference: {fileID: 0}
@@ -7371,6 +7399,10 @@ PrefabInstance:
     - target: {fileID: 892266840687535599, guid: 361aec556615846fabc99162c00de926, type: 3}
       propertyPath: m_Name
       value: Dot (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535599, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_TagString
+      value: Big-dot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361aec556615846fabc99162c00de926, type: 3}
@@ -14123,6 +14155,18 @@ PrefabInstance:
       value: 142
       objectReference: {fileID: 0}
     - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535598, guid: 361aec556615846fabc99162c00de926, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.05
       objectReference: {fileID: 0}
@@ -14165,6 +14209,10 @@ PrefabInstance:
     - target: {fileID: 892266840687535599, guid: 361aec556615846fabc99162c00de926, type: 3}
       propertyPath: m_Name
       value: Dot (144)
+      objectReference: {fileID: 0}
+    - target: {fileID: 892266840687535599, guid: 361aec556615846fabc99162c00de926, type: 3}
+      propertyPath: m_TagString
+      value: Big-dot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 361aec556615846fabc99162c00de926, type: 3}
