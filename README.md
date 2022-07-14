@@ -4,9 +4,8 @@
 Pac-woman is a 3D videogame based on the original Pac-man that consists on two different worlds:
 - Pac-woman
 - COD
-<div style="width:60px ; height:60px">
-  ![](https://user-images.githubusercontent.com/54753356/179031600-83be9d0f-79d3-4ec6-acc7-248c7932be92.jpeg)
-<div>
+
+![Worlds](https://user-images.githubusercontent.com/54753356/179031759-73e1e232-906e-47f3-a425-e257c62d31d4.jpeg)
 
 ## ✅Installation
 
