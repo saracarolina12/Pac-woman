@@ -9,7 +9,7 @@ Pac-woman is a 3D videogame based on the original Pac-man that consists on two d
 
 ## ✅Installation
 
-1. Download the zip included in /runGame
+1. Download the ![zip](linktozip)
 
 2. Extract the zip
 
