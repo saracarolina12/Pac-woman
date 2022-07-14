@@ -1,4 +1,3 @@
-![image](https://user-images.githubusercontent.com/54753356/179028340-3f5baee8-be52-4d59-8f73-4021e8c01f92.png)
 # Pac-woman
 
 Pac-woman is a 3D videogame based on the original Pac-man that consists on two different worlds:
